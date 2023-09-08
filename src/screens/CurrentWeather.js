@@ -1,26 +1,29 @@
 import React from "react";
-import { Octicons } from '@expo/vector-icons';
+import {Feather}   from '@expo/vector-icons'
 import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
 import RowText from "../components/RowText";
 import { WeatherType } from "../utilities/WeatherType";
 
-const CurrentWeather = () => {
+const CurrentWeather = (props) => {
+  const{weatherData} = props;
+  console.log({weatherData})
   const {wrapper, container, temp, feels, bodyWrapper, description, message, highLow, highLowWrapper} = styles
   return (
-    <SafeAreaView style={wrapper}>
-      <View style={container}>
+    <SafeAreaView style={[wrapper, {backgroundColor: WeatherType(weatherData.weather[0].main).backgroundColor}]}>
+      <View style={[container, {backgroundColor: WeatherType(weatherData.weather[0].main).backgroundColor}]}>
         {/* <Text>Current Weather</Text> */}
-        <Octicons name="sun" size={100} style={{marginTop: 20}}color="black" />
-        <Text style={temp}> 6</Text>
-        <Text style={feels}>feels like 5</Text>
-        <RowText message1="High: 8" 
-        message2="Low: 6" 
+        <Feather name={WeatherType(weatherData.weather[0].main).icon} size={100} style={{marginTop: 20}}color="black" />
+        <Text style={temp}>{weatherData.main.temp}</Text>
+        <Text style={feels}>{`feels like ${weatherData.main.feels_like}`}</Text>
+        <RowText message1={`High: ${weatherData.main.temp_max}`} 
+        message2={`Low: ${weatherData.main.temp_min}`} 
         message1Style={highLow}
         message2Style={highLow}
         containerStyle={highLowWrapper}/>
       </View>
-        <RowText  message1={"Its sunny" }
-        message2={WeatherType.ThunderStorm.message}
+        <RowText  message1={WeatherType(weatherData.weather[0].main).message}
+        // message2={WeatherType(weatherData.weather[0].main).message}
+
         message1Style={description} 
         message2Style={message}
         containerStyle={bodyWrapper}/>
@@ -35,7 +38,6 @@ const CurrentWeather = () => {
 
 const styles = StyleSheet.create({
   wrapper:{
-    backgroundColor: "pink",
     flex:1,
   },
   container: {

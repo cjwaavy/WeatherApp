@@ -4,27 +4,32 @@ import { Ionicons, Feather } from '@expo/vector-icons';
 import IconText from "../components/IconText";
 
 
-const City = () => {
-    const {container, bgImage, cityName, countryName, cityText, icon, populationWrapper, rowLayout} = styles
+const City = (props) => {
+    const {cityInfo} = props
+    const {container, bgImage, cityName, countryName, cityText, icon, populationWrapper, rowLayout, blackLayer} = styles
     return (
         <SafeAreaView style={container}>
             <ImageBackground style={bgImage}
+            
                 source={require("../../assets/city.jpg")}
             >
-                <Text style={[cityName, cityText]}>London</Text>
-                <Text style={[countryName, cityText]}>UK</Text>
-                <View style={populationWrapper}>
-                <Ionicons style={icon} name="person" size={50} color="red" />
-                <Text style={cityText}>8000</Text>
-                </View>
-                <View style = {rowLayout}>
-                    <View>
-                        <IconText iconName="sunrise" iconColor="white" bodyText={`Sunrise\n6:00 AM`} bodyTextStyles={cityText}/>
+                <View style={blackLayer}>
+                    <Text style={[cityName, cityText]}>{cityInfo.name}</Text>
+                    <Text style={[countryName, cityText]}>{cityInfo.country}</Text>
+                    <View style={populationWrapper}>
+                    <Ionicons style={icon} name="person" size={50} color="red" />
+                    <Text style={cityText}>{cityInfo.population}</Text>
                     </View>
-                    <View>
-                        <IconText iconName="sunset" iconColor="white" bodyText={`Sunset\n6:00 PM`} bodyTextStyles={cityText}/>
+                    <View style = {rowLayout}>
+                        <View>
+                            <IconText iconName="sunrise" iconColor="white" bodyText={`Sunrise\n${(new Date(cityInfo.sunrise*1000)).toLocaleTimeString()}`} bodyTextStyles={cityText}/>
+                        </View>
+                        <View>
+                            <IconText iconName="sunset" iconColor="white" bodyText={`Sunset\n${(new Date(cityInfo.sunset*1000)).toLocaleTimeString()}`} bodyTextStyles={cityText}/>
+                        </View>
                     </View>
                 </View>
+                
             </ImageBackground>
         </SafeAreaView>
     )
@@ -45,10 +50,14 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     cityText: {
+        paddingTop: 15,
         justifyContent: "center",
+        textAlign: "center",
         alignSelf: "center",
         fontWeight: "bold",
-        color: "white"
+        color: "white",
+
+
     },
     icon:{
         alignSelf: "center",
@@ -63,6 +72,9 @@ const styles = StyleSheet.create({
         marginTop: 100,
         flexDirection: "row",
         justifyContent: "space-around"
+    },
+    blackLayer:{
+        
     }
     }
 )

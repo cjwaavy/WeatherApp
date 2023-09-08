@@ -7,7 +7,7 @@ const RowText = (props) => {
     return (
         <View style={containerStyle}>
           <Text style={message1Style}>{message1}</Text>                                                                                                                                                              
-          <Text style={message2Style}> {message2}</Text>
+          {/* <Text style={message2Style}> {message2}</Text> */}
         </View>
     )
 }
