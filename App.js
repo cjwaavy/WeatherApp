@@ -5,16 +5,18 @@ import { useGetWeather } from "./src/hooks/useGetWeather"
 import ErrorItem from "./src/components/ErrorItem"
 const App = () => {
   const[weather, loading, errorMsg] = useGetWeather()
+  console.log(weather)
+  console.log(loading)
+  console.log(errorMsg)
   if (weather && weather.list && !loading){
     return(
-      // <ErrorItem></ErrorItem>
       <Tabs weather = {weather}/>
     )
   }
   
   return (
       <View style={styles.container}>
-      {errorMsg ? (<ErrorItem />):
+      {errorMsg ? (<ErrorItem errorMsg={errorMsg}/>):
       (<ActivityIndicator size="large" color="blue"/> )
       }
       </View>

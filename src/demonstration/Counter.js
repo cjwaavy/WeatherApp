@@ -39,7 +39,7 @@ const Counter = () => {
                 <Text>
                     {text}
                 </Text>
-                {/* <Text style={title}>{`count: ${count}`}</Text>
+                <Text style={title}>{`count: ${count}`}</Text>
                 <Button color="red" title="increment" onPress={() => {
                     setCount(count => count+1)
                 }} 
@@ -53,7 +53,7 @@ const Counter = () => {
                 />
                 <Button color="green" title="decerement" onPress={() => {
                     setNewCount(newCount => newCount-1)
-                }}/> */}
+                }}/>
             </View>
         </SafeAreaView>        
     )
