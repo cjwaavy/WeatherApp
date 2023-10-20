@@ -54,13 +54,15 @@ const Tabs = ({weather}) => {
           }
         </Tab.Screen>
         <Tab.Screen name="Upcoming" 
-        component={UpcomingWeather}
+        // component={UpcomingWeather}
         options={{
           tabBarIcon: ({focused}) => (
             <Feather name="clock" size={25} color={focused ? "tomato" : "black"} />
           )
         }}
-        />
+        >
+          {() => <UpcomingWeather weather = {weather} />}
+        </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
     

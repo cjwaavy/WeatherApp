@@ -60,7 +60,7 @@ const DATA = [
   },
 ]
  
-const UpcomingWeather = () => {
+const UpcomingWeather = (props) => {
     // const [state, setState] = useState(() => 0)
     // useEffect(() => {
     // (async () => {
@@ -80,6 +80,7 @@ const UpcomingWeather = () => {
             
         })()
     })
+    const {weather} = props
     const renderItem = ({item}) => (<ListItem 
         weather={item.weather} 
         temp={item.main.temp} 
