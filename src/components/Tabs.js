@@ -19,12 +19,16 @@ const Tabs = ({weather}) => {
           backgroundColor: 'lightblue',          
         },
         headerStyle:{
-          backgroundColor: 'lightblue'
+          backgroundColor: 'lightblue',
         },
         headerTitleStyle:{
           fontWeight: 'bold',
           fontSize: 20,
+          fontFamily: 'Avenir-Book',
           color: 'tomato',
+        },
+        tabBarLabelStyle: {
+          fontFamily: 'Avenir-Book',
         }
       }}
       >
@@ -54,14 +58,13 @@ const Tabs = ({weather}) => {
           }
         </Tab.Screen>
         <Tab.Screen name="Upcoming" 
-        // component={UpcomingWeather}
         options={{
           tabBarIcon: ({focused}) => (
             <Feather name="clock" size={25} color={focused ? "tomato" : "black"} />
           )
         }}
         >
-          {() => <UpcomingWeather weather = {weather} />}
+          {() => <UpcomingWeather weather = {weather.list} />}
         </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>

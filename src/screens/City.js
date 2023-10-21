@@ -38,16 +38,18 @@ const City = (props) => {
 const styles = StyleSheet.create({
     contianer: {
         flex: 1,
-        marginTop: StatusBar.currentHeight || 0
+        marginTop: StatusBar.currentHeight || 0,
     },
     bgImage:{
         height: "100%",
     },
     cityName:{
         fontSize: 40,
+        fontFamily: 'Avenir-Book',
     },
     countryName:{
-        fontSize: 20
+        fontSize: 20,
+        fontFamily: 'Avenir-Book',
     },
     cityText: {
         paddingTop: 15,
@@ -56,8 +58,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         fontWeight: "bold",
         color: "white",
-
-
+        fontFamily: 'Avenir-Book',
     },
     icon:{
         alignSelf: "center",

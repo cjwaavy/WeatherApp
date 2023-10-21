@@ -1,21 +1,22 @@
+import 'react-native-gesture-handler';
 import React from "react";
 import {Feather}   from '@expo/vector-icons'
 import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
 import RowText from "../components/RowText";
 import { WeatherType } from "../utilities/WeatherType";
-import { useFonts, Quicksand_300Light,  Quicksand_500Medium} from '@expo-google-fonts/quicksand';
-
+import { useFonts, Quicksand_300Light,  Quicksand_700Bold} from '@expo-google-fonts/quicksand';
+import { NotoSerif_400Regular } from '@expo-google-fonts/noto-serif';
 const CurrentWeather = (props) => {
   let [fontsLoaded, fontError] = useFonts({
     Quicksand_300Light,
-    Quicksand_500Medium
+    Quicksand_700Bold,
+    NotoSerif_400Regular
   });
 
   if (!fontsLoaded && !fontError) {
     return null;
   }
   const{weatherData} = props;
-  console.log({weatherData})
   const {wrapper, container, temp, feels, bodyWrapper, description, message, highLow, highLowWrapper, messageContainer} = styles
   return (
     <SafeAreaView style={[wrapper, {backgroundColor: WeatherType(weatherData.weather[0].main).backgroundColor}]}>
@@ -55,12 +56,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'pink'
   },
   temp:{
-    fontFamily: 'Quicksand_500Medium',
+    fontFamily: 'Avenir-Book',
     color: 'black',
     fontSize: 50
   },
   feels:{
-    fontFamily: 'Quicksand_500Medium',
+    fontFamily: 'Avenir-Book',
     fontSize: 30,
     color: 'black'
   },
@@ -80,7 +81,8 @@ const styles = StyleSheet.create({
   },
   highLow:{
       color: 'black',
-      fontSize: 20
+      fontSize: 20,
+      fontFamily: 'Avenir-Book',
   },
   highLowWrapper:{
       flexDirection: 'row'
