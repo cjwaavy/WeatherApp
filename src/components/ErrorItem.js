@@ -5,23 +5,24 @@ import { TouchableOpacity } from 'react-native';
 import App from '../../App';
 import Counter from '../demonstration/Counter';
 
-const ErrorItem = (props) => {
+const ErrorItem = ( props) => {
     const {errorMsg} = props
     console.log(errorMsg)
     
   return (
     <View style={styles.container}>
         <View style={styles.textContainer}>
-            <FontAwesome name="frown-o" size={50} color="black" />
-            <Text style={styles.textStyle}>Error Occured Somewhere</Text>
-            <Text>{`Error message: ${errorMsg}`}</Text>
+            <FontAwesome name="frown-o" size={50} color="#8ED5CA" />
+            {/* <Text >Error Occured Somewhere</Text> */}
+            <Text style={styles.textStyle}>
+                {`Error message:\n${errorMsg}`}</Text>
             <TouchableOpacity 
             activeOpacity={0.8}
             onPress={() => {
-                return (<Counter />)
+                
             }}>
                 <View style={styles.button}>
-                    <Text style={styles.buttonText}>Press Me</Text>
+                    <Text style={styles.buttonText}>Retry</Text>
                 </View>
             </TouchableOpacity>
             
@@ -33,30 +34,30 @@ const ErrorItem = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'red'
     },
     textContainer: {
         flex: 1,
         fontSize: 50,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        
     },
     textStyle: {
-        fontSize: 30
+        fontSize: 30,
+        textAlign: 'center',
+        fontFamily: 'Avenir-Book'
     },
     button:{
-        marginTop: 15,
-        paddingHorizontal: 120,
-        paddingVertical: 10,
-        backgroundColor: 'white',
-        borderWidth: 1,
+        marginTop: 25,
+        paddingHorizontal: 80,
+        paddingVertical: 20,
+        backgroundColor: 'gray',
         borderRadius: '50%',
-        borderColor: 'black'
         
     },
     buttonText: {
-        fontSize: 20,
-        color: 'gray'
+        fontSize: 15,
+        color: 'white'
     }
 })
 export default ErrorItem

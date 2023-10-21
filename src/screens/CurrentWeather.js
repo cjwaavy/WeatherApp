@@ -3,20 +3,29 @@ import {Feather}   from '@expo/vector-icons'
 import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
 import RowText from "../components/RowText";
 import { WeatherType } from "../utilities/WeatherType";
+import { useFonts, Quicksand_300Light,  Quicksand_500Medium} from '@expo-google-fonts/quicksand';
 
 const CurrentWeather = (props) => {
+  let [fontsLoaded, fontError] = useFonts({
+    Quicksand_300Light,
+    Quicksand_500Medium
+  });
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
   const{weatherData} = props;
   console.log({weatherData})
-  const {wrapper, container, temp, feels, bodyWrapper, description, message, highLow, highLowWrapper} = styles
+  const {wrapper, container, temp, feels, bodyWrapper, description, message, highLow, highLowWrapper, messageContainer} = styles
   return (
     <SafeAreaView style={[wrapper, {backgroundColor: WeatherType(weatherData.weather[0].main).backgroundColor}]}>
       <View style={[container, {backgroundColor: WeatherType(weatherData.weather[0].main).backgroundColor}]}>
         {/* <Text>Current Weather</Text> */}
         <Feather name={WeatherType(weatherData.weather[0].main).icon} size={100} style={{marginTop: 20}}color="black" />
-        <Text style={temp}>{weatherData.main.temp}</Text>
-        <Text style={feels}>{`feels like ${weatherData.main.feels_like}`}</Text>
-        <RowText message1={`High: ${weatherData.main.temp_max}`} 
-        message2={`Low: ${weatherData.main.temp_min}`} 
+        <Text style={temp}>{`${weatherData.main.temp}°`}</Text>
+        <Text style={feels}>{`feels like ${weatherData.main.feels_like}°`}</Text>
+        <RowText message1={`High: ${weatherData.main.temp_max}°`} 
+        message2={`Low: ${weatherData.main.temp_min}°`} 
         message1Style={highLow}
         message2Style={highLow}
         containerStyle={highLowWrapper}/>
@@ -24,9 +33,9 @@ const CurrentWeather = (props) => {
         <RowText  message1={WeatherType(weatherData.weather[0].main).message}
         // message2={WeatherType(weatherData.weather[0].main).message}
 
-        message1Style={description} 
+        message1Style={message} 
         message2Style={message}
-        containerStyle={bodyWrapper}/>
+        containerStyle={messageContainer}/>
       {/* <View style={bodyWrapper}>
           <Text style={description}>Its sunny</Text>
           <Text style={message}>Its perfect t-shirt weather</Text>
@@ -46,10 +55,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'pink'
   },
   temp:{
+    fontFamily: 'Quicksand_500Medium',
     color: 'black',
     fontSize: 50
   },
   feels:{
+    fontFamily: 'Quicksand_500Medium',
     fontSize: 30,
     color: 'black'
   },
@@ -63,7 +74,9 @@ const styles = StyleSheet.create({
     fontSize: 48
   },
   message:{
-    fontSize: 30
+    fontFamily: 'Quicksand_300Light',
+    fontSize: 30,
+    textAlign: 'center',
   },
   highLow:{
       color: 'black',
@@ -72,5 +85,9 @@ const styles = StyleSheet.create({
   highLowWrapper:{
       flexDirection: 'row'
   },
+  messageContainer: {
+    alignItems: 'center',
+    paddingBottom: 40,
+  }
 })
 export default CurrentWeather

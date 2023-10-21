@@ -13,7 +13,7 @@ export const useGetWeather = () => {
       try {
         // setLatitude(() =>  lat)
         // setLongitude(() => lon)
-        let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`)
+        let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=imperial`)
         let json = await response.json()
         setWeather(() => json)
       } catch (error) {

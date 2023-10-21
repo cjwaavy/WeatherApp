@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator()
 const Tabs = ({weather}) => {
 
     return (
-    <NavigationContainer>
+    <NavigationContainer independent={true}>
       <Tab.Navigator
       screenOptions={{
         tabBarInactiveTintColor: 'gray',
